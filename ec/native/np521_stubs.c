@@ -22,56 +22,56 @@
 CAMLprim value mc_np521_inv(value out, value in)
 {
 	CAMLparam2(out, in);
-	inversion(Caml_ba_data_val(out), Caml_ba_data_val(in));
+	inversion((uint64_t *) Bytes_val(out), (uint64_t *) Bytes_val(in));
 	CAMLreturn(Val_unit);
 }
 
 CAMLprim value mc_np521_mul(value out, value a, value b)
 {
 	CAMLparam3(out, a, b);
-	fiat_np521_mul(Caml_ba_data_val(out), Caml_ba_data_val(a), Caml_ba_data_val(b));
+	fiat_np521_mul((uint64_t *) Bytes_val(out), (uint64_t *) Bytes_val(a), (uint64_t *) Bytes_val(b));
 	CAMLreturn(Val_unit);
 }
 
 CAMLprim value mc_np521_add(value out, value a, value b)
 {
 	CAMLparam3(out, a, b);
-	fiat_np521_add(Caml_ba_data_val(out), Caml_ba_data_val(a), Caml_ba_data_val(b));
+	fiat_np521_add((uint64_t *) Bytes_val(out), (uint64_t *) Bytes_val(a), (uint64_t *) Bytes_val(b));
 	CAMLreturn(Val_unit);
 }
 
 CAMLprim value mc_np521_one(value out)
 {
 	CAMLparam1(out);
-	fiat_np521_set_one(Caml_ba_data_val(out));
+	fiat_np521_set_one((uint64_t *) Bytes_val(out));
 	CAMLreturn(Val_unit);
 }
 
 CAMLprim value mc_np521_from_bytes(value out, value in)
 {
 	CAMLparam2(out, in);
-	fiat_np521_from_bytes(Caml_ba_data_val(out), Caml_ba_data_val(in));
+	fiat_np521_from_bytes((uint64_t *) Bytes_val(out), Bytes_val(in));
 	CAMLreturn(Val_unit);
 }
 
 CAMLprim value mc_np521_to_bytes(value out, value in)
 {
 	CAMLparam2(out, in);
-	fiat_np521_to_bytes(Caml_ba_data_val(out), Caml_ba_data_val(in));
+	fiat_np521_to_bytes(Bytes_val(out), (uint64_t *) Bytes_val(in));
 	CAMLreturn(Val_unit);
 }
 
 CAMLprim value mc_np521_from_montgomery(value out, value in)
 {
 	CAMLparam2(out, in);
-	fiat_np521_from_montgomery(Caml_ba_data_val(out), Caml_ba_data_val(in));
+	fiat_np521_from_montgomery((uint64_t *) Bytes_val(out), (uint64_t *) Bytes_val(in));
 	CAMLreturn(Val_unit);
 }
 
 CAMLprim value mc_np521_to_montgomery(value out, value in)
 {
 	CAMLparam2(out, in);
-	fiat_np521_to_montgomery(Caml_ba_data_val(out), Caml_ba_data_val(in));
+	fiat_np521_to_montgomery((uint64_t *) Bytes_val(out), (uint64_t *) Bytes_val(in));
 	CAMLreturn(Val_unit);
 }
 
