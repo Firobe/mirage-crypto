@@ -133,6 +133,8 @@ module type Dsa = sig
   val pub_to_bytes : pub -> bytes
   val sign_bytes : key:priv -> ?k:bytes -> bytes -> bytes * bytes
   val verify_bytes : key:pub -> bytes * bytes -> bytes -> bool
+
+  val force_precompute : unit -> unit
 end
 
 (** Elliptic curve with Diffie-Hellman and DSA. *)
