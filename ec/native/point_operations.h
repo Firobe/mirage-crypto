@@ -252,8 +252,18 @@ static void fe_set_g(fe x, fe y, fe z) {
 
 /* Pre-compute multiples of the generator point */
 #define TABLE_LENGTH (FE_LENGTH * 2)
+#define QUOTE(name) #name
+#define STR(macro) QUOTE(macro)
+#define CURVE_NAME STR(CURVE_DESCRIPTION)
 
 static fe generator_table[TABLE_LENGTH][15][3] = {0};
+
+static void print_fe(fe x) {
+    for(int i = 0 ; i < LIMBS ; ++i) {
+        printf("%lx, ", x[i]);
+    }
+    printf("\n");
+}
 
 static void compute_generator_table (void) {
     static int generator_table_initialized = 0;
@@ -262,6 +272,9 @@ static void compute_generator_table (void) {
     }
     fe b_x, b_y, b_z;
     fe_set_g(b_x, b_y, b_z);
+    printf("b_x %s: ", CURVE_NAME); print_fe(b_x);
+    printf("b_y: "); print_fe(b_y);
+    printf("b_z: "); print_fe(b_z);
     for (int i = 0 ; i < TABLE_LENGTH ; ++i) {
         fe_copy(generator_table[i][0][0], b_x);
         fe_copy(generator_table[i][0][1], b_y);
