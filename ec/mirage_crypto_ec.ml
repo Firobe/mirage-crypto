@@ -646,10 +646,11 @@ module Make_dsa (Param : Parameters) (F : Fn) (P : Point) (S : Scalar) (H : Dige
         else (
             (* Assuming shift is < 8 *)
             let r' = Bytes.create Param.byte_length in
+            let p = ref 0x00 in
             for i = 0 to Param.byte_length - 1 do
                 let x = Bytes.get_uint8 r i in
-                let p = if i = 0 then 0x00 else Bytes.get_uint8 r (i - 1) in
-                let v = (x lsr shift) lor (p lsl (8 - shift)) in
+                let v = (x lsr shift) lor (!p lsl (8 - shift)) in
+                p := x;
                 Bytes.set_uint8 r' i v
             done;
             Bytes.unsafe_to_string r'
